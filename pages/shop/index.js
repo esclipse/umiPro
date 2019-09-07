@@ -36,7 +36,7 @@ export default class Shop extends PureComponent{
         if(modalTitle === 'edit'){
             const newList = [...this.state.shopList].map(v=>{
                 if(v.id === info.id){
-                    v = info;
+                    v = {...info,img: this.myRef.current.state.imageUrl};
                 }
                 return v
             });
