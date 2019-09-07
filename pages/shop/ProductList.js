@@ -18,13 +18,13 @@ const { Option } = Select;
  
 
 export default (props)=>{
-    const { dataSource, visible, handleOk, handleCancel, showModal, handleDelete, wrapRef, formRef } = props;
+    const { dataSource, visible, handleOk, handleCancel, showModal, handleDelete, wrapRef, formRef, handleEdit, title, id } = props;
     const [imgUrl,setImgUrl] = useState('');
     function submit(){
         formRef.current.validateFields((err,value)=>{
            if(!err){
                 handleGetImg();
-                const info = {...value,img: imgUrl};
+                const info = {...value,img: imgUrl, id: id? id:  Date.now() };
                 handleOk(info);
            }
         })
@@ -79,7 +79,7 @@ export default (props)=>{
                             <Button type="danger" size="small" >下架该商品</Button>
                         </Popconfirm>
                         <Divider type="vertical"/>
-                        <Button type="primary" size="small">编辑该商品</Button>
+                        <Button type="primary" size="small" onClick={()=>handleEdit(id)}>编辑该商品</Button>
                     </div>
                 )
             }
@@ -90,9 +90,9 @@ export default (props)=>{
         <>
              <Button type="primary" style={{
                  marginBottom: "1rem"
-             }} onClick={showModal}>上架商品</Button>
+             }} onClick={()=>showModal('add')}>上架商品</Button>
              <Modal
-                title="添加商品"
+                title={title}
                 visible={visible}
                 onOk={submit}
                 onCancel={handleCancel}
@@ -209,6 +209,12 @@ class RegistrationForm extends React.Component {
             loading: false,
             imageUrl: null
         })
+    }
+
+    setImg = (imageUrl) => {
+      this.setState({
+        imageUrl
+      })
     }
   
     handleChange = info => {
