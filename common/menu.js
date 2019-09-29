@@ -31,6 +31,11 @@ const menuData = [
     name: "商品上架下架",
     icon: 'smile',
     path: 'shop'
+  },
+  {
+    name: "聊天室",
+    icon: 'smile',
+    path: 'nknchat'
   }
 ];
 
