@@ -13,7 +13,7 @@ function createWindow () {
 
     win.webContents.openDevTools();
 
-    win.loadURL('http://localhost:8001');
+    win.loadURL('http://localhost:8000');
 
     win.on('closed', () => {
         win = null

@@ -29,46 +29,45 @@ class BasicLayout extends Component {
     const { children, location } = this.props;
     const { collapsed } = this.state;
     return (
-      <ApolloProvider client={client}>
-      <CurrentUser>
-          {currentUser=>{
-              console.log(currentUser)
-              return currentUser? 
+      // <ApolloProvider client={client}>
+      // <CurrentUser>
+      //     {currentUser=>{
+      //         return currentUser? 
               <Layout>
-          <SiderMenu
-            logo={logo}
-            collapsed={collapsed}
-            menuData={getMenuData()}
-            location={location}
-            onCollapse={this.handleMenuCollapse}
-          />
-          <Layout>
-            <Header style={{ padding: 0 }}>
-              <GlobalHeader
+              <SiderMenu
                 logo={logo}
                 collapsed={collapsed}
-                currentUser={{
-                  name: 'Serati Ma',
-                  avatar: 'https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png',
-                  userid: '00000001',
-                  notifyCount: 12,
-                }}
+                menuData={getMenuData()}
+                location={location}
                 onCollapse={this.handleMenuCollapse}
               />
-            </Header>
-            <Content style={{ margin: '24px 24px 0', height: '100%' }}>
-              { children }
-            </Content>
-            {/* <Footer> 0xWallet by lcj</Footer> */}
-          </Layout>
-          </Layout> 
-              : <Login />
-          }}
-      </CurrentUser>
-      </ApolloProvider>
+              <Layout>
+                <Header style={{ padding: 0 }}>
+                  <GlobalHeader
+                    logo={logo}
+                    collapsed={collapsed}
+                    currentUser={{
+                      name: 'Serati Ma',
+                      avatar: 'https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png',
+                      userid: '00000001',
+                      notifyCount: 12,
+                    }}
+                    onCollapse={this.handleMenuCollapse}
+                  />
+                </Header>
+                <Content style={{ margin: '24px 24px 0', height: '100%' }}>
+                  { children }
+                </Content>
+                {/* <Footer> 0xWallet by lcj</Footer> */}
+              </Layout>
+              </Layout> 
+      //             : <Login />
+      //         }}
+      //     </CurrentUser>
+      // </ApolloProvider>
     );
   }
-}
+};
 
 export default BasicLayout;
 
